@@ -16,13 +16,14 @@ mongoose.connect(
 mongoose.set("strictQuery", true);
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "./views"));
 app.use(express.urlencoded({ extended: false }));
 
 // Render index.html
 app.get("/", async (req, res) => {
   try {
     const shortUrls = await ShortUrl.find();
-    res.render("index", { shortUrls });
+    res.render("./views/index.ejs", { shortUrls });
   } catch (error) {
     console.log(error);
   }
