@@ -47,6 +47,6 @@ app.get("/:shortUrl", async (req, res) => {
 });
 
 // APP SERVER
-app.listen(5000, () => {
+app.listen(3839, () => {
   console.log("Server listening on 5000");
 });
