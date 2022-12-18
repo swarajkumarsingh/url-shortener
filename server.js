@@ -5,10 +5,13 @@ const ShortId = require("shortid");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/urlShortener", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  "mongodb+srv://swaraj:swaraj@123@cluster0.xfyesc6.mongodb.net/?retryWrites=true&w=majority",
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  }
+);
 
 mongoose.set("strictQuery", true);
 
