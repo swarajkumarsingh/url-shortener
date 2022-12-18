@@ -20,30 +20,42 @@ app.use(express.urlencoded({ extended: false }));
 
 // Render index.html
 app.get("/", async (req, res) => {
-  const shortUrls = await ShortUrl.find();
-  res.render("index", { shortUrls });
+  try {
+    const shortUrls = await ShortUrl.find();
+    res.render("index", { shortUrls });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Create Short URL
 app.post("/shortUrls", async (req, res) => {
-  const fullUrl = req.body.fullUrl;
-  const shortID = ShortId.generate();
+  try {
+    const fullUrl = req.body.fullUrl;
+    const shortID = ShortId.generate();
 
-  await ShortUrl.create({ full: fullUrl, short: shortID });
-  res.redirect("/");
+    await ShortUrl.create({ full: fullUrl, short: shortID });
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Redirect to Long-Url
 app.get("/:shortUrl", async (req, res) => {
-  const paramsURL = req.params.shortUrl;
-  const shortUrl = await ShortUrl.findOne({ short: paramsURL });
+  try {
+    const paramsURL = req.params.shortUrl;
+    const shortUrl = await ShortUrl.findOne({ short: paramsURL });
 
-  if (shortUrl == null) return res.status(404);
+    if (shortUrl == null) return res.status(404);
 
-  shortUrl.clicks++;
-  shortUrl.save();
+    shortUrl.clicks++;
+    shortUrl.save();
 
-  res.redirect(shortUrl.full);
+    res.redirect(shortUrl.full);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // APP SERVER
