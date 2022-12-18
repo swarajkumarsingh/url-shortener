@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ShortUrl = require("./models/shortUrls.js");
 const ShortId = require("shortid");
 
+
 const app = express();
 
 mongoose.connect(
@@ -16,7 +17,7 @@ mongoose.connect(
 mongoose.set("strictQuery", true);
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "./views"));
+// app.set("views", path.join(__dirname, "./views"));
 app.use(express.urlencoded({ extended: false }));
 
 // Render index.html
