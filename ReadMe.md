@@ -5,6 +5,11 @@
 
 #
 
+### Preview
+```
+https://url-shortener-one-rho.vercel.app/
+```
+
 ## Installation
 
 ### Run npm install (Install All packages)
